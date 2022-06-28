@@ -37,7 +37,8 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            'visitor' => 'Damian'
+            'visitor' => 'Damian',
+            'pageName' => env('APP_NAME')
         ]);
     }
 }

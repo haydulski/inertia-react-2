@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +17,9 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
+});
+Route::get('/link', function () {
+    return Inertia::render('Link');
 });
 
 Auth::routes();
