@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/inertia-react'
 
 function Navbar() {
 
-    const { pageName } = usePage().props
+    const { pageName, cats } = usePage().props
 
     return (
         <header>
@@ -21,6 +21,20 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" href="/books">Books</Link>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {cats.map(cc => {
+                                        return (
+                                            <li>
+                                                <a className="dropdown-item" href={`/category/${cc.id}`}>{cc.category}</a>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
                             </li>
                         </ul>
                         <ul className="navbar-nav ms-auto">

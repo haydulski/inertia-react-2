@@ -15,4 +15,4 @@ function Book({ title, desc, id }) {
     );
 }
 
-export default Book;
+export default React.memo(Book);
