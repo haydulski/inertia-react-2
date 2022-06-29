@@ -25,6 +25,7 @@ class BookFactory extends Factory
             'author' => fake()->name(),
             'summary' => fake()->paragraph(1, true),
             'year' => fake()->year($max = 'now'),
+            'is_hold' => 0,
             'category_id' => fake()->numberBetween(1, 8)
 
         ];

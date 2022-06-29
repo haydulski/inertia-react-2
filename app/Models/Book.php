@@ -11,6 +11,6 @@ class Book extends Model
 
 
     protected $table = "books";
-    protected $fillable = ['title', 'author', 'summary', 'year', 'category_id'];
+    protected $fillable = ['title', 'author', 'summary', 'year', 'category_id', 'is_hold'];
     public $timestamps = false;
 }
