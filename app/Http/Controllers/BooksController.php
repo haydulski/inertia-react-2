@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BooksResource;
 use App\Models\Book;
 use App\Models\Category;
-
 use Inertia\Inertia;
 
 class BooksController extends Controller

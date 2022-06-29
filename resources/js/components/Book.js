@@ -2,12 +2,12 @@ import { random } from 'lodash';
 import React from 'react';
 
 
-function Book({ title, desc, id }) {
+function Book({ title, desc, id, photo }) {
     let imgId = random(1, 4);
     return (
         <>
             <div className='col-lg-3 p-2' id={id}>
-                <img className='w-100' src={`./imgs/${imgId}.jpg`} alt='book' />
+                <img className='w-100' src={`./imgs/${photo}.jpg`} alt='book' />
                 <h3>{title}</h3>
                 <p>{desc}</p>
             </div>

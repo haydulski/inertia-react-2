@@ -21,7 +21,7 @@ function Books(props) {
 
     const newestBooks = useCallback(() => newest.map((n, key) => {
         return (
-            <Book title={n.title} desc={n.summary} id={n.id} key={key} />
+            <Book title={n.title} desc={n.summary} id={n.id} key={key} photo={n.picture_id} />
         )
     })
         , [books])
@@ -58,7 +58,7 @@ function Books(props) {
             <div className="row mt-1 mb-2">
                 {sortedByCat.length == 0 ? 'loading...' : sortedByCat.map((n, key) => {
                     return (
-                        <Book title={n.title} desc={n.summary} id={n.id} key={key} />
+                        <Book title={n.title} desc={n.summary} id={n.id} key={key} photo={n.picture_id} />
                     )
                 })}
             </div>

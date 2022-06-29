@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
     {
         \App\Models\Book::truncate();
-        \App\Models\Book::factory(10)->count(3000)->create();
+        \App\Models\Book::factory(10)->count(500)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

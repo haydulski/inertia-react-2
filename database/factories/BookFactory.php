@@ -26,7 +26,8 @@ class BookFactory extends Factory
             'summary' => fake()->paragraph(1, true),
             'year' => fake()->year($max = 'now'),
             'is_hold' => 0,
-            'category_id' => fake()->numberBetween(1, 8)
+            'category_id' => fake()->numberBetween(1, 8),
+            'picture_id' => fake()->numberBetween(1, 9)
 
         ];
     }
