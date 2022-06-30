@@ -18,9 +18,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
-});
-Route::get('/books', [BooksController::class, 'index']);
+})->name('home');
+Route::get('/books', [BooksController::class, 'index'])->name('books');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -17,10 +17,10 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" href="/">Home</Link>
+                                <Link className="nav-link active" aria-current="page" href={route('home')}>Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" href="/books">Books</Link>
+                                <Link className="nav-link" href={route('books')}>Books</Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,7 +29,7 @@ function Navbar() {
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {cats.map(cc => {
                                         return (
-                                            <li>
+                                            <li key={cc.id}>
                                                 <a className="dropdown-item" href={`/category/${cc.id}`}>{cc.category}</a>
                                             </li>
                                         )
