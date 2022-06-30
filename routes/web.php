@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,6 +20,10 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');
+
 Route::get('/books', [BooksController::class, 'index'])->name('books');
+Route::get('/book/{id}', [BooksController::class, 'show'])->name('book');
+
+Route::get('/categories/{id}', [CategoriesController::class, 'index'])->name('categories');
 
 Auth::routes();

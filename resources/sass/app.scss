@@ -7,13 +7,43 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+:root {
+    --toastify-color-error: #D93E30;
+}
+
 html {
     font-size: 16px;
+    color: #260101;
 }
 
 h1 {
-    font-weight: 700;
     font-size: 6rem;
+    color: $primary;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+}
+
+img {
+    border-radius: 10px;
+}
+
+button.btn {
+    color: lightgray;
+
+    & a {
+        text-decoration: none;
+        color: lightgray
+    }
+}
+
+h3.no-wrap {
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .page__main {

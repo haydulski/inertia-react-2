@@ -11,6 +11,7 @@ class BooksResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'author' => $this->author,
             'summary' => substr($this->summary, 0, 80) . '...',
             'year' => (int) $this->year,
             'category_id' => $this->category_id,
