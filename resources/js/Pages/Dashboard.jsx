@@ -8,7 +8,9 @@ function Dashboard({ user }) {
     const dateTimeStr = new Date(user.created_at).toLocaleDateString()
 
     const handleGiveBack = (id) => {
-        Inertia.delete(route('holder.delete', { bookId: id }),)
+        if (confirm('Are you sure to remove that book?')) {
+            Inertia.delete(route('holder.delete', { bookId: id }),)
+        }
     }
 
     const UserBooks = () => {

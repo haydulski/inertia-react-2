@@ -39,6 +39,22 @@ class BooksController extends Controller
         return Inertia::render('SingleBook', ['bookData' => $book]);
     }
 
+    public function hold(Request $req)
+    {
+
+        $userId = Auth::id();
+        if ($userId === null) return back()->with('error', 'You are not loged in');
+
+        $user = user::find($userId);
+        $validated = $req->validate(
+            ['bookId' => 'required|int']
+        );
+
+        $user->books()->attach($validated['bookId']);
+        Book::find($validated['bookId'])->update(['is_hold' => 1]);
+        return redirect()->route('book', ['id' => $validated['bookId']])->with('success', 'Book added to your private list');
+    }
+
     public function holderDelete(Request $req): RedirectResponse
     {
         try {
@@ -47,6 +63,7 @@ class BooksController extends Controller
                 'bookId' => 'required|int',
             ]);
             $user->books()->detach($validated['bookId']);
+            Book::find($validated['bookId'])->update(['is_hold' => 0]);
 
             return redirect()->route('dashboard')->with('success', 'Book was given back');
         } catch (\Throwable $th) {
