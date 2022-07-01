@@ -11,7 +11,7 @@ function Home(props) {
         <div className="row page__main" >
             <div className="col-12  d-flex flex-column justify-content-center align-items-center ">
                 <h1>Library</h1>
-                <h2>books for you</h2>
+                <h2>books for you (Inertia.js with Laravel)</h2>
             </div>
         </div>
 

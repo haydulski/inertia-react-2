@@ -2,8 +2,35 @@ import React from 'react';
 import { Link } from '@inertiajs/inertia-react'
 
 
-function Navbar({ pageName, cats }) {
+function Navbar({ pageName, cats, isLogged }) {
 
+    const LoginButtons = () => {
+        return (
+            <>
+                <li className="nav-item">
+                    <a className="nav-link" href="/login">Login</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="/register">Register</a>
+                </li>
+            </>
+        )
+
+    }
+
+    const LogutButton = () => {
+        return (
+            <>
+                <li className="nav-item">
+                    <Link className="nav-link me-2" href={route('dashboard')}>Account</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className='btn btn-primary' href='/logout' method='post' as='button'>Logout</Link>
+                </li>
+            </>
+        )
+
+    }
     return (
         <header>
             <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -36,12 +63,7 @@ function Navbar({ pageName, cats }) {
                             </li>
                         </ul>
                         <ul className="navbar-nav ms-auto">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/login">Login</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/register">Register</a>
-                            </li>
+                            {isLogged === null ? <LoginButtons /> : <LogutButton />}
                         </ul>
                     </div>
                 </div>

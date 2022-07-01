@@ -6,7 +6,11 @@ use App\Http\Resources\BooksResource;
 use App\Http\Resources\SingleBookResource;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class BooksController extends Controller
@@ -33,5 +37,21 @@ class BooksController extends Controller
         $book = new SingleBookResource($findBook);
 
         return Inertia::render('SingleBook', ['bookData' => $book]);
+    }
+
+    public function holderDelete(Request $req): RedirectResponse
+    {
+        try {
+            $user = User::find(Auth::id());
+            $validated = $req->validate([
+                'bookId' => 'required|int',
+            ]);
+            $user->books()->detach($validated['bookId']);
+
+            return redirect()->route('dashboard')->with('success', 'Book was given back');
+        } catch (\Throwable $th) {
+
+            return redirect()->route('dashboard')->with('error', 'Something went wrong');
+        }
     }
 }

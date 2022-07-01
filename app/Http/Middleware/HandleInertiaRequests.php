@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -41,8 +42,10 @@ class HandleInertiaRequests extends Middleware
             'pageName' => env('APP_NAME'),
             'cats' => Category::all(),
             'flash' => [
-                'error' => session()->get('error')
-            ]
+                'error' => session()->get('error'),
+                'success' => session()->get('success'),
+            ],
+            'isLogged' => Auth::id()
         ]);
     }
 }
