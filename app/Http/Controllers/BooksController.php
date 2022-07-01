@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BooksResource;
@@ -12,12 +14,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class BooksController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
-
         $books = Cache::remember("all_books", 60 * 60 * 8, function () {
             return  BooksResource::collection(Book::all());
         });
@@ -30,7 +32,7 @@ class BooksController extends Controller
         ]);
     }
 
-    public function show(int $id)
+    public function show(int $id): Response
     {
         $findBook = Book::find($id);
         if ($findBook === null) return back()->with('error', 'Book with that id was not find');
@@ -39,9 +41,8 @@ class BooksController extends Controller
         return Inertia::render('SingleBook', ['bookData' => $book]);
     }
 
-    public function hold(Request $req)
+    public function hold(Request $req): RedirectResponse
     {
-
         $userId = Auth::id();
         if ($userId === null) return back()->with('error', 'You are not loged in');
 
