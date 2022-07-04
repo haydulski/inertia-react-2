@@ -9,7 +9,7 @@ function Categories(props) {
             <div className="row my-5">
                 <h1>{props.category}</h1>
             </div>
-            <div className="row row-cols-4">
+            <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
                 {props.books.map((book) => {
                     return (
 
