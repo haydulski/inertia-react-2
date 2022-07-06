@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link } from '@inertiajs/inertia-react'
 
+interface Props {
+    pageName: string;
+    cats: Array<{
+        id: number;
+        category: string;
+    }>;
+    isLogged?: number
+}
 
-function Navbar({ pageName, cats, isLogged }) {
+declare function route(name: string, args?: { id: number }): any;
+
+const Navbar = ({ pageName, cats, isLogged }: Props) => {
 
     const LoginButtons = () => {
         return (

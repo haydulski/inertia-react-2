@@ -2,8 +2,16 @@ import { random } from 'lodash';
 import React from 'react';
 import { Link } from '@inertiajs/inertia-react'
 
+interface BookProps {
+    title: string;
+    desc: string;
+    id: string;
+    photo: string;
+}
 
-function Book({ title, desc, id, photo }) {
+declare function route(name: string, args?: { id: string }): string;
+
+const Book = ({ title, desc, id, photo }: BookProps) => {
     let imgId = random(1, 4);
     return (
         <>
@@ -11,9 +19,11 @@ function Book({ title, desc, id, photo }) {
                 <img className='w-100' src={`./imgs/${photo}.jpg`} alt='book' />
                 <h3>{title}</h3>
                 <p>{desc}</p>
-                <button className="btn btn-secondary my-2">
-                    <Link href={route('book', { id: id })}>More</Link>
-                </button>
+                <Link href={route('book', { id: id })}>
+                    <button className="btn btn-secondary my-2">
+                        More
+                    </button>
+                </Link>
             </div>
         </>
     );

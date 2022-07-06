@@ -1,8 +1,24 @@
 import React from 'react';
 import LayoutMain from '../layouts/LayoutMain'
 import { Inertia } from '@inertiajs/inertia'
+import { ReactComponent } from '@inertiajs/inertia-react';
 
-function SingleBook({ bookData }) {
+interface Props {
+
+    bookData: {
+        id: number;
+        title: string;
+        author: string;
+        summary: string;
+        year: string;
+        picture_id: string;
+        is_hold: number;
+    }
+}
+
+declare function route(name: string, args?: { bookId: number }): string;
+
+const SingleBook = ({ bookData }: Props) => {
 
     const handleHold = () => {
         Inertia.post(route('book.hold', { bookId: bookData.id }))
@@ -37,6 +53,6 @@ function SingleBook({ bookData }) {
     );
 }
 
-SingleBook.layout = (page) => <LayoutMain children={page} title="Home" />
+SingleBook.layout = (page: ReactComponent) => <LayoutMain children={page} title="Home" />
 
 export default SingleBook;

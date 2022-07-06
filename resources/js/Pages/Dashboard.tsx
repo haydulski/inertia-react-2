@@ -1,23 +1,43 @@
 import React, { useState } from 'react';
 import LayoutMain from '../layouts/LayoutMain'
 import { Inertia } from '@inertiajs/inertia'
+import { ReactComponent } from '@inertiajs/inertia-react';
 
+interface Props {
+    user: {
+        id: number;
+        created_at: string;
+        name: string;
+        email: string;
+        books: Array<{
+            id: number;
+            title: string;
+            pivot: {
+                created_at: string;
+            }
+        }>;
+    }
 
-function Dashboard({ user }) {
+}
+
+declare function route(name: string, args?: { bookId: number }): string;
+
+const Dashboard = ({ user }: Props) => {
 
     const dateTimeStr = new Date(user.created_at).toLocaleDateString()
 
-    const handleGiveBack = (id) => {
+    const handleGiveBack = (id: number) => {
         if (confirm('Are you sure to remove that book?')) {
             Inertia.delete(route('holder.delete', { bookId: id }),)
         }
     }
 
-    const UserBooks = () => {
+    const UserBooks: any = () => {
         if (user.books.length != 0) {
             return user.books.map(book => {
                 const dateHolded = new Date(book.pivot.created_at).toLocaleDateString()
                 return (
+
                     <li className="list-group-item" key={book.id}>
                         <button className='btn btn-info me-3' onClick={() => handleGiveBack(book.id)} style={{ color: 'white' }}>
                             Give back
@@ -27,8 +47,11 @@ function Dashboard({ user }) {
                             holded from {dateHolded}
                         </span>
                     </li>
+
                 )
             })
+        } else {
+            return null
         }
     }
 
@@ -68,6 +91,6 @@ function Dashboard({ user }) {
     );
 }
 
-Dashboard.layout = page => <LayoutMain children={page} title='User dashboard' />
+Dashboard.layout = (page: ReactComponent) => <LayoutMain children={page} title='User dashboard' />
 
 export default Dashboard;

@@ -1,22 +1,41 @@
-import React, { useState, useMemo, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import LayoutMain from '../layouts/LayoutMain'
 import Book from '../components/Book'
 import { orderBy } from 'lodash'
+import { ReactComponent } from '@inertiajs/inertia-react'
 
+interface Props {
+    books: Array<{
+        category_id: number;
+        year: string;
+        title: string;
+        picture_id: string;
+        summary: string;
+        id: string;
+    }>;
+    cats: Array<{
+        id: number;
+        category: string;
+    }>;
+}
+type State = {
+    id: number;
+    category: string;
+}
 
-function Books(props) {
+const Books = (props: Props) => {
 
-    const books = props.books
-    const cats = props.categories
+    const { books, cats } = props
 
-    const [currentCat, setCat] = useState(cats[0])
+    const [currentCat, setCat] = useState<State>(cats[0])
     const newest = orderBy(books, (a) => a.year, 'desc').splice(0, 4)
 
-    const sortedByCat = books.filter(cat => cat.category_id === currentCat.id).splice(0, 4)
+    const sortedByCat = books.filter((book) => book.category_id === currentCat.id).splice(0, 4)
 
 
-    const handleCategory = (id) => {
-        setCat(cats.find(cat => cat.id === id))
+    const handleCategory = (id: number) => {
+        const result: State = cats.find(cat => cat.id === id) ?? { id: 1, category: 'Test' }
+        setCat(result)
     }
 
     const newestBooks = useCallback(() => newest.map((n, key) => {
@@ -66,5 +85,5 @@ function Books(props) {
     );
 }
 
-Books.layout = page => <LayoutMain children={page} title="Books" />
+Books.layout = (page: ReactComponent) => <LayoutMain children={page} title="Books" />
 export default Books;

@@ -1,8 +1,22 @@
-import { Link } from '@inertiajs/inertia-react';
+import { Link, ReactComponent } from '@inertiajs/inertia-react';
 import React from 'react'
 import LayoutMain from '../layouts/LayoutMain'
 
-function Categories(props) {
+interface Props {
+    category: any;
+    books: Array<{
+        id: number;
+        picture_id: number;
+        title: string;
+        author: string;
+        year: string;
+    }>;
+}
+type RC = ReactComponent & { props: { category: string } }
+
+declare function route(name: string, args?: { id: number }): string;
+
+const Categories = (props: Props) => {
 
     return (
         <>
@@ -18,7 +32,9 @@ function Categories(props) {
                             <h3 className='my-2 no-wrap'>{book.title}</h3>
                             <h5>{book.author}</h5>
                             <p>{book.year}</p>
-                            <button className='btn btn-secondary'><Link href={route('book', { id: book.id })}>Details</Link></button>
+                            <Link href={route('book', { id: book.id })}>
+                                <button className='btn btn-secondary'>Details</button>
+                            </Link>
                             <hr />
                         </div>
 
@@ -30,6 +46,6 @@ function Categories(props) {
     );
 }
 
-Categories.layout = page => <LayoutMain children={page} title={page.props.category} />
+Categories.layout = (page: RC) => <LayoutMain children={page} title={page.props.category} />
 
 export default Categories;
