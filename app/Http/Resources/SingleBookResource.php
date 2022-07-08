@@ -8,7 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class SingleBookResource extends JsonResource
 {
-
     public function toArray($request): array
     {
         return [
@@ -19,7 +18,7 @@ class SingleBookResource extends JsonResource
             'year' => (int) $this->year,
             'category_id' => $this->category_id,
             'picture_id' => $this->picture_id,
-            'is_hold' => $this->is_hold
+            'is_hold' => $this->is_hold,
         ];
     }
 }

@@ -15,7 +15,6 @@ class BookFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
     protected $model = Book::class;
 
     public function definition()
@@ -27,7 +26,7 @@ class BookFactory extends Factory
             'year' => fake()->year($max = 'now'),
             'is_hold' => 0,
             'category_id' => fake()->numberBetween(1, 8),
-            'picture_id' => fake()->numberBetween(1, 9)
+            'picture_id' => fake()->numberBetween(1, 9),
 
         ];
     }

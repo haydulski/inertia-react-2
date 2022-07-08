@@ -16,7 +16,6 @@ use Illuminate\Validation\Rules;
 
 class RegisterController extends Controller
 {
-
     public function index(): View
     {
         return view('auth.register');
@@ -24,7 +23,9 @@ class RegisterController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        if (User::count() > 20) return redirect()->route('home')->with('error', 'Too many users to add new one');
+        if (User::count() > 20) {
+            return redirect()->route('home')->with('error', 'Too many users to add new one');
+        }
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

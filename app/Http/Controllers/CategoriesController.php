@@ -21,11 +21,13 @@ class CategoriesController extends Controller
 
         $catName = Category::find($id);
 
-        if ($catName === null) return redirect()->route('home')->with('error', 'Category do not exists');
+        if ($catName === null) {
+            return redirect()->route('home')->with('error', 'Category do not exists');
+        }
 
         return Inertia::render('Categories', [
             'books' => $searchBooks,
-            'category' => $catName->category
+            'category' => $catName->category,
         ]);
     }
 }

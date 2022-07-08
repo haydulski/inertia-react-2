@@ -14,7 +14,9 @@ class UserController extends Controller
     public function index(): Response
     {
         $user = User::with('books')->find(Auth::id());
-        if (!isset($user)) return redirect()->route('login');
+        if (! isset($user)) {
+            return redirect()->route('login');
+        }
 
         return Inertia::render('Dashboard', ['user' => $user]);
     }

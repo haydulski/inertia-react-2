@@ -10,8 +10,10 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $table = "books";
+    protected $table = 'books';
+
     protected $fillable = ['title', 'author', 'summary', 'year', 'category_id', 'is_hold', 'picture_id'];
+
     public $timestamps = false;
 
     public function users(): BelongsToMany
